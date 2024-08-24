@@ -25,28 +25,64 @@ class grid():
         coord = input("Select a position: ").upper()
 
         while coord not in validCoord:
-            print("Invalid Coord", end='\r')
+            print("Invalid Coord")
             coord = input("Select a position: ").upper() 
 
         match coord:
             case "A1":
-                self.grid[0][0] = self.selector
+                if self.grid[0][0] == ' ':
+                    self.grid[0][0] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "A2":
-                self.grid[0][1] = self.selector
+                if self.grid[0][1] == ' ':
+                    self.grid[0][1] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "A3":
-                self.grid[0][2] = self.selector
+                if self.grid[0][2] == ' ':
+                    self.grid[0][2] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "B1":
-                self.grid[1][0] = self.selector
+                if self.grid[1][0] == ' ':
+                    self.grid[1][0] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "B2":
-                self.grid[1][1] = self.selector
+                if self.grid[1][1] == ' ':
+                    self.grid[1][1] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "B3":
-                self.grid[1][2] = self.selector
+                if self.grid[1][2] == ' ':
+                    self.grid[1][2] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "C1":
-                self.grid[2][0] = self.selector
+                if self.grid[2][0] == ' ':
+                    self.grid[2][0] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "C2":
-                self.grid[2][1] = self.selector
+                if self.grid[2][1] == ' ':
+                    self.grid[2][1] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
             case "C3":
-                self.grid[2][2] = self.selector
+                if self.grid[2][2] == ' ':
+                    self.grid[2][2] = self.selector
+                else:
+                    print("Space occupied")
+                    self.getMove()
 
     def switchPlayer(self):
         if self.turn % 2 == 0:
