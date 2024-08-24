@@ -108,7 +108,10 @@ class grid():
                     return "X"
                 else:
                     return 'O'
-
+                
+    def tieCheck(self):
+        return all(self.grid[i][j] != ' ' for i in range(3) for j in range(3))
+    
 if __name__ == "__main__":
     play = True
     winner = None
@@ -121,9 +124,15 @@ if __name__ == "__main__":
         grid.switchPlayer()
         grid.getMove()
         winner = grid.checkWin()
-        if winner == None:
-            grid.turn += 1
-        else:
+        tie = grid.tieCheck()
+
+        if winner:
             grid.dispGrid()
-            print(winner,"Wins!")
+            print(winner, "Wins!")
             play = False
+        elif tie:
+            grid.dispGrid()
+            print("Tie!")
+            play = False
+        else:
+            grid.turn += 1
