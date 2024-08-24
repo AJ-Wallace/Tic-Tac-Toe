@@ -1,5 +1,3 @@
-from time import sleep
-
 class grid():
 
     def __init__(self):
@@ -28,7 +26,6 @@ class grid():
 
         while coord not in validCoord:
             print("Invalid Coord", end='\r')
-            sleep(2)
             coord = input("Select a position: ").upper() 
 
         match coord:
@@ -51,22 +48,46 @@ class grid():
             case "C3":
                 self.grid[2][2] = self.selector
 
-
-    def switchPlayer(self,turn):
+    def switchPlayer(self):
         if self.turn % 2 == 0:
             self.selector = 'O'
         else:
             self.selector = 'X'
 
+    def checkWin(self):
+        lines = [
+            [self.grid[0][0], self.grid[0][1], self.grid[0][2]],
+            [self.grid[1][0], self.grid[1][1], self.grid[1][2]],
+            [self.grid[2][0], self.grid[2][1], self.grid[2][2]],
+            [self.grid[0][0], self.grid[1][0], self.grid[2][0]],
+            [self.grid[0][1], self.grid[1][1], self.grid[2][1]],
+            [self.grid[0][2], self.grid[1][2], self.grid[2][2]],
+            [self.grid[0][0], self.grid[1][1], self.grid[2][2]],
+            [self.grid[2][0], self.grid[1][1], self.grid[0][2]],
+        ]
+        
+        for line in lines:
+            if line[0] == line[1] == line[2] != ' ':
+                if line[0] == "X":
+                    return "X"
+                else:
+                    return 'O'
 
 if __name__ == "__main__":
     play = True
+    winner = None
 
     grid = grid()
     grid.setGrid()
 
     while play == True:
         grid.dispGrid()
-        grid.switchPlayer(grid.turn)
+        grid.switchPlayer()
         grid.getMove()
-        grid.turn += 1
+        winner = grid.checkWin()
+        if winner == None:
+            grid.turn += 1
+        else:
+            grid.dispGrid()
+            print(winner,"Wins!")
+            play = False
